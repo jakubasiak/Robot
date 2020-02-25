@@ -1,0 +1,7 @@
+D:\Source\Private\Robot\Robot\bin\Debug\Robot.exe.config
+D:\Source\Private\Robot\Robot\bin\Debug\Robot.exe
+D:\Source\Private\Robot\Robot\bin\Debug\Robot.pdb
+D:\Source\Private\Robot\Robot\obj\Debug\Robot.csprojAssemblyReference.cache
+D:\Source\Private\Robot\Robot\obj\Debug\Robot.csproj.CoreCompileInputs.cache
+D:\Source\Private\Robot\Robot\obj\Debug\Robot.exe
+D:\Source\Private\Robot\Robot\obj\Debug\Robot.pdb
