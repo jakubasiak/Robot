@@ -10,11 +10,14 @@ namespace Robot
     {
         static void Main(string[] args)
         {
-            Keyboard.WriteChar(']');
-            //for (char c = 'a'; c <= 'z'; c++)
-            //{
-            //    Keyboard.WriteChar(c);
-            //}
+            for (int c = 0; c <= 10; c++)
+            {
+                Keyboard.KeyDown(Keys.D);
+                Keyboard.KeyDown(Keys.U);
+                Keyboard.KeyDown(Keys.P);
+                Keyboard.KeyDown(Keys.A);
+                Keyboard.KeyDown(Keys.Space);
+            }
         }
     }
 }
