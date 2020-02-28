@@ -12,14 +12,7 @@ namespace Robot
         {
             for (int c = 0; c <= 10; c++)
             {
-                Keyboard.WriteChar('→');
-                Keyboard.WriteChar('→');
-                Keyboard.WriteChar('→');
-                //Keyboard.KeyDown(Keys.D);
-                //Keyboard.KeyDown(Keys.U);
-                //Keyboard.KeyDown(Keys.P);
-                //Keyboard.KeyDown(Keys.A);
-                //Keyboard.KeyDown(Keys.Space);
+                Keyboard.WriteText("${!@^Dziwne Znaki} & ĄżŹĆ");
             }
         }
     }

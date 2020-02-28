@@ -10,22 +10,49 @@ namespace Robot
 {
     public static class Keyboard
     {
-        [DllImport("user32.dll", SetLastError = true)]
-        static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
+        public static int Delay { get; set; } = 15;
 
-        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
-        static extern byte VkKeyScan(char ch);
+
 
         public static void KeyDown(Keys key)
         {
-            Thread.Sleep(50);
-            keybd_event((byte) key, GetScanCode(key), 0, 0); // Key down
+            Thread.Sleep(Delay);
+
+            WinApi.INPUT[] inputs = new WinApi.INPUT[1];
+            inputs[0].type = WinApi.INPUT_KEYBOARD;
+            inputs[0].ki.dwFlags = 0;
+            inputs[0].ki.wVk = (byte) key;
+            inputs[0].ki.wScan = GetScanCode(key);
+
+            uint intReturn = WinApi.SendInput(1, inputs, System.Runtime.InteropServices.Marshal.SizeOf(inputs[0]));
+            if (intReturn != 1)
+            {
+                throw new Exception("Could not send key: " + key);
+            }
         }
 
         public static void KeyUp(Keys key)
         {
-            Thread.Sleep(50);
-            keybd_event((byte)key, GetScanCode(key), 0x0002, 0); // Key down
+            Thread.Sleep(Delay);
+            WinApi.INPUT[] inputs = new WinApi.INPUT[1];
+            inputs[0].type = WinApi.INPUT_KEYBOARD;
+            inputs[0].ki.wVk = (byte) key;
+            inputs[0].ki.wScan = GetScanCode(key);
+            inputs[0].ki.dwFlags = WinApi.KEYEVENTF_KEYUP;
+            uint intReturn = WinApi.SendInput(1, inputs, System.Runtime.InteropServices.Marshal.SizeOf(inputs[0]));
+            if (intReturn != 1)
+            {
+                throw new Exception("Could not send key: " + key);
+            }
+        }
+
+        public static void WriteText(string text)
+        {
+            var charArray = text.ToCharArray();
+            foreach (char c in charArray)
+            {
+                WriteChar(c);
+            }
         }
 
         public static void WriteChar(char value)
