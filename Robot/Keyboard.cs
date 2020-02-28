@@ -16,11 +16,6 @@ namespace Robot
         [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         static extern byte VkKeyScan(char ch);
 
-        //public static void WriteChar(char value)
-        //{
-
-        //}
-
         public static void KeyDown(Keys key)
         {
             Thread.Sleep(50);
@@ -33,30 +28,418 @@ namespace Robot
             keybd_event((byte)key, GetScanCode(key), 0x0002, 0); // Key down
         }
 
-        //private static Key GetScanCode(Keys key)
-        //{
-        //    switch (key)
-        //        {
-        //            case Keys.:
-        //                key = new Key() { Dscription = "left_shift", Value = 0x10, ScanCode = 0xAA };
-        //                break;
-        //            case KeyModifier.LEFT_CTRL:
-        //                key = new Key() { Dscription = "left_ctrl", Value = 0x11, ScanCode = 0x9D };
-        //                break;
-        //            case KeyModifier.LEFT_ALT:
-        //                key = new Key() { Dscription = "left_alt", Value = 0x12, ScanCode = 0xB8 };
-        //                break;
-        //            case KeyModifier.RIGHT_SHIFT:
-        //                key = new Key() { Dscription = "right_shift", Value = 0x10, ScanCode = 0xB6 };
-        //                break;
-        //            case KeyModifier.RIGHT_CTRL:
-        //                key = new Key() { Dscription = "right_ctrl", Value = 0x11, ScanCode = 0x9D };
-        //                break;
-        //            case KeyModifier.RIGHT_ALT:
-        //                key = new Key() { Dscription = "right_alt", Value = 0x12, ScanCode = 0xB8 };
-        //                break;
-        //        }
-        //}
+        public static void WriteChar(char value)
+        {
+            var isUpper = Char.IsUpper(value);
+
+            if (isUpper)
+            {
+                KeyDown(Keys.LeftShift);
+            }
+
+            switch (Char.ToLower(value))
+            {
+                case ' ':
+                    KeyDown(Keys.Space);
+                    KeyUp(Keys.Space);
+                    break;
+                case '\t':
+                    KeyDown(Keys.Tab);
+                    KeyUp(Keys.Tab);
+                    break;
+                case '\n':
+                    KeyDown(Keys.Return);
+                    KeyUp(Keys.Return);
+                    break;
+                case 'a':
+                    KeyDown(Keys.A);
+                    KeyUp(Keys.A);
+                    break;
+                case 'ą':
+                    KeyDown(Keys.RightMenu);
+                    KeyDown(Keys.A);
+                    KeyUp(Keys.A);
+                    KeyUp(Keys.RightMenu);
+                    break;
+                case 'b':
+                    KeyDown(Keys.B);
+                    KeyUp(Keys.B);
+                    break;
+                case 'c':
+                    KeyDown(Keys.C);
+                    KeyUp(Keys.C);
+                    break;
+                case 'ć':
+                    KeyDown(Keys.RightMenu);
+                    KeyDown(Keys.C);
+                    KeyUp(Keys.C);
+                    KeyUp(Keys.RightMenu);
+                    break;
+                case 'd':
+                    KeyDown(Keys.D);
+                    KeyUp(Keys.D);
+                    break;
+                case 'e':
+                    KeyDown(Keys.E);
+                    KeyUp(Keys.E);
+                    break;
+                case 'ę':
+                    KeyDown(Keys.RightMenu);
+                    KeyDown(Keys.E);
+                    KeyUp(Keys.E);
+                    KeyUp(Keys.RightMenu);
+                    break;
+                case 'f':
+                    KeyDown(Keys.F);
+                    KeyUp(Keys.F);
+                    break;
+                case 'g':
+                    KeyDown(Keys.G);
+                    KeyUp(Keys.G);
+                    break;
+                case 'h':
+                    KeyDown(Keys.H);
+                    KeyUp(Keys.H);
+                    break;
+                case 'i':
+                    KeyDown(Keys.I);
+                    KeyUp(Keys.I);
+                    break;
+                case 'j':
+                    KeyDown(Keys.J);
+                    KeyUp(Keys.J);
+                    break;
+                case 'k':
+                    KeyDown(Keys.K);
+                    KeyUp(Keys.K);
+                    break;
+                case 'l':
+                    KeyDown(Keys.L);
+                    KeyUp(Keys.L);
+                    break;
+                case 'ł':
+                    KeyDown(Keys.RightMenu);
+                    KeyDown(Keys.L);
+                    KeyUp(Keys.L);
+                    KeyUp(Keys.RightMenu);
+                    break;
+                case 'm':
+                    KeyDown(Keys.M);
+                    KeyUp(Keys.M);
+                    break;
+                case 'n':
+                    KeyDown(Keys.N);
+                    KeyUp(Keys.N);
+                    break;
+                case 'o':
+                    KeyDown(Keys.O);
+                    KeyUp(Keys.O);
+                    break;
+                case 'ó':
+                    KeyDown(Keys.RightMenu);
+                    KeyDown(Keys.O);
+                    KeyUp(Keys.O);
+                    KeyUp(Keys.RightMenu);
+                    break;
+                case 'p':
+                    KeyDown(Keys.P);
+                    KeyUp(Keys.P);
+                    break;
+                case 'q':
+                    KeyDown(Keys.Q);
+                    KeyUp(Keys.Q);
+                    break;
+                case 'r':
+                    KeyDown(Keys.R);
+                    KeyUp(Keys.R);
+                    break;
+                case 's':
+                    KeyDown(Keys.S);
+                    KeyUp(Keys.S);
+                    break;
+                case 'ś':
+                    KeyDown(Keys.RightMenu);
+                    KeyDown(Keys.S);
+                    KeyUp(Keys.S);
+                    KeyUp(Keys.RightMenu);
+                    break;
+                case 't':
+                    KeyDown(Keys.T);
+                    KeyUp(Keys.T);
+                    break;
+                case 'u':
+                    KeyDown(Keys.U);
+                    KeyUp(Keys.U);
+                    break;
+                case 'v':
+                    KeyDown(Keys.V);
+                    KeyUp(Keys.V);
+                    break;
+                case 'w':
+                    KeyDown(Keys.W);
+                    KeyUp(Keys.W);
+                    break;
+                case 'x':
+                    KeyDown(Keys.X);
+                    KeyUp(Keys.X);
+                    break;
+                case 'y':
+                    KeyDown(Keys.Y);
+                    KeyUp(Keys.Y);
+                    break;
+                case 'z':
+                    KeyDown(Keys.Z);
+                    KeyUp(Keys.Z);
+                    break;
+                case 'ż':
+                    KeyDown(Keys.RightMenu);
+                    KeyDown(Keys.Z);
+                    KeyUp(Keys.Z);
+                    KeyUp(Keys.RightMenu);
+                    break;
+                case 'ź':
+                    KeyDown(Keys.RightMenu);
+                    KeyDown(Keys.X);
+                    KeyUp(Keys.X);
+                    KeyUp(Keys.RightMenu);
+                    break;
+
+
+                case '1':
+                    KeyDown(Keys.N1);
+                    KeyUp(Keys.N1);
+                    break;
+                case '!':
+                    KeyDown(Keys.LeftShift);
+                    KeyDown(Keys.N1);
+                    KeyUp(Keys.N1);
+                    KeyUp(Keys.LeftShift);
+                    break;
+                case '2':
+                    KeyDown(Keys.N2);
+                    KeyUp(Keys.N2);
+                    break;
+                case '@':
+                    KeyDown(Keys.LeftShift);
+                    KeyDown(Keys.N2);
+                    KeyUp(Keys.N2);
+                    KeyUp(Keys.LeftShift);
+                    break;
+                case '3':
+                    KeyDown(Keys.N3);
+                    KeyUp(Keys.N3);
+                    break;
+                case '#':
+                    KeyDown(Keys.LeftShift);
+                    KeyDown(Keys.N3);
+                    KeyUp(Keys.N3);
+                    KeyUp(Keys.LeftShift);
+                    break;
+                case '4':
+                    KeyDown(Keys.N4);
+                    KeyUp(Keys.N4);
+                    break;
+                case '$':
+                    KeyDown(Keys.LeftShift);
+                    KeyDown(Keys.N4);
+                    KeyUp(Keys.N4);
+                    KeyUp(Keys.LeftShift);
+                    break;
+                case '5':
+                    KeyDown(Keys.N5);
+                    KeyUp(Keys.N5);
+                    break;
+                case '%':
+                    KeyDown(Keys.LeftShift);
+                    KeyDown(Keys.N5);
+                    KeyUp(Keys.N5);
+                    KeyUp(Keys.LeftShift);
+                    break;
+                case '6':
+                    KeyDown(Keys.N6);
+                    KeyUp(Keys.N6);
+                    break;
+                case '^':
+                    KeyDown(Keys.LeftShift);
+                    KeyDown(Keys.N6);
+                    KeyUp(Keys.N6);
+                    KeyUp(Keys.LeftShift);
+                    break;
+                case '7':
+                    KeyDown(Keys.N7);
+                    KeyUp(Keys.N7);
+                    break;
+                case '&':
+                    KeyDown(Keys.LeftShift);
+                    KeyDown(Keys.N7);
+                    KeyUp(Keys.N7);
+                    KeyUp(Keys.LeftShift);
+                    break;
+                case '8':
+                    KeyDown(Keys.N8);
+                    KeyUp(Keys.N8);
+                    break;
+                case '*':
+                    KeyDown(Keys.LeftShift);
+                    KeyDown(Keys.N8);
+                    KeyUp(Keys.N8);
+                    KeyUp(Keys.LeftShift);
+                    break;
+                case '9':
+                    KeyDown(Keys.N9);
+                    KeyUp(Keys.N9);
+                    break;
+                case '(':
+                    KeyDown(Keys.LeftShift);
+                    KeyDown(Keys.N9);
+                    KeyUp(Keys.N9);
+                    KeyUp(Keys.LeftShift);
+                    break;
+                case '0':
+                    KeyDown(Keys.N0);
+                    KeyUp(Keys.N0);
+                    break;
+                case ')':
+                    KeyDown(Keys.LeftShift);
+                    KeyDown(Keys.N0);
+                    KeyUp(Keys.N0);
+                    KeyUp(Keys.LeftShift);
+                    break;
+                case ',':
+                    KeyDown(Keys.OEMComma);
+                    KeyUp(Keys.OEMComma);
+                    break;
+                case '<':
+                    KeyDown(Keys.LeftShift);
+                    KeyDown(Keys.OEMComma);
+                    KeyUp(Keys.OEMComma);
+                    KeyUp(Keys.LeftShift);
+                    break;
+                case '.':
+                    KeyDown(Keys.OEMPeriod);
+                    KeyUp(Keys.OEMPeriod);
+                    break;
+                case '>':
+                    KeyDown(Keys.LeftShift);
+                    KeyDown(Keys.OEMPeriod);
+                    KeyUp(Keys.OEMPeriod);
+                    KeyUp(Keys.LeftShift);
+                    break;
+                case '/':
+                    KeyDown(Keys.OEM2);
+                    KeyUp(Keys.OEM2);
+                    break;
+                case '?':
+                    KeyDown(Keys.LeftShift);
+                    KeyDown(Keys.OEM2);
+                    KeyUp(Keys.OEM2);
+                    KeyUp(Keys.LeftShift);
+                    break;
+                case ';':
+                    KeyDown(Keys.OEM1);
+                    KeyUp(Keys.OEM1);
+                    break;
+                case ':':
+                    KeyDown(Keys.LeftShift);
+                    KeyDown(Keys.OEM1);
+                    KeyUp(Keys.OEM1);
+                    KeyUp(Keys.LeftShift);
+                    break;
+                case '\'':
+                    KeyDown(Keys.OEM7);
+                    KeyUp(Keys.OEM7);
+                    break;
+                case '"':
+                    KeyDown(Keys.LeftShift);
+                    KeyDown(Keys.OEM7);
+                    KeyUp(Keys.OEM7);
+                    KeyUp(Keys.LeftShift);
+                    break;
+                case '\\':
+                    KeyDown(Keys.OEM5);
+                    KeyUp(Keys.OEM5);
+                    break;
+                case '|':
+                    KeyDown(Keys.LeftShift);
+                    KeyDown(Keys.OEM5);
+                    KeyUp(Keys.OEM5);
+                    KeyUp(Keys.LeftShift);
+                    break;
+                case '[':
+                    KeyDown(Keys.OEM4);
+                    KeyUp(Keys.OEM4);
+                    break;
+                case '{':
+                    KeyDown(Keys.LeftShift);
+                    KeyDown(Keys.OEM4);
+                    KeyUp(Keys.OEM4);
+                    KeyUp(Keys.LeftShift);
+                    break;
+                case ']':
+                    KeyDown(Keys.OEM6);
+                    KeyUp(Keys.OEM6);
+                    break;
+                case '}':
+                    KeyDown(Keys.LeftShift);
+                    KeyDown(Keys.OEM6);
+                    KeyUp(Keys.OEM6);
+                    KeyUp(Keys.LeftShift);
+                    break;
+                case '-':
+                    KeyDown(Keys.OEMMinus);
+                    KeyUp(Keys.OEMMinus);
+                    break;
+                case '_':
+                    KeyDown(Keys.LeftShift);
+                    KeyDown(Keys.OEMMinus);
+                    KeyUp(Keys.OEMMinus);
+                    KeyUp(Keys.LeftShift);
+                    break;
+                case '=':
+                    KeyDown(Keys.OEMPlus);
+                    KeyUp(Keys.OEMPlus);
+                    break;
+                case '+':
+                    KeyDown(Keys.LeftShift);
+                    KeyDown(Keys.OEMPlus);
+                    KeyUp(Keys.OEMPlus);
+                    KeyUp(Keys.LeftShift);
+                    break;
+                case '`':               // ????
+                    KeyDown(Keys.OEM3);
+                    KeyUp(Keys.OEM3);
+                    break;
+                case '~':               // ????
+                    KeyDown(Keys.LeftShift);
+                    KeyDown(Keys.OEM3);
+                    KeyUp(Keys.OEM3);
+                    KeyUp(Keys.LeftShift);
+                    break;
+                case '←':
+                    KeyDown(Keys.Left);
+                    KeyUp(Keys.Left);
+                    break;
+                case '↑':
+                    KeyDown(Keys.Up);
+                    KeyUp(Keys.Up);
+                    break;
+                case '→':
+                    KeyDown(Keys.Right);
+                    KeyUp(Keys.Right);
+                    break;
+                case '↓':
+                    KeyDown(Keys.Down);
+                    KeyUp(Keys.Down);
+                    break;
+            }
+
+            if (isUpper)
+            {
+                KeyUp(Keys.LeftShift);
+            }
+
+            KeyUp(Keys.LeftShift);
+        }
 
         private static byte GetScanCode(Keys key)
         {
@@ -134,10 +517,10 @@ namespace Robot
                     return 0x89;
                 case Keys.N9:
                     return 0x8A;
-                case Keys.OEMMinus:
+                case Keys.OEMMinus: // _-
                     return 0x8C;
-                case Keys.OEMPlus:
-                    return 0x8C;
+                case Keys.OEMPlus: // =+
+                    return 0x8D;
                 case Keys.OEMComma: // ,<
                     return 0xB3;
                 case Keys.OEMPeriod: // .>
@@ -176,163 +559,74 @@ namespace Robot
                     return 0xB8;
                 case Keys.RightMenu: // right alt
                     return 0xB8;
+                case Keys.Left:
+                    return 0xCB;
+                case Keys.Right:
+                    return 0xCD;
+                case Keys.Up:
+                    return 0xC8;
+                case Keys.Down:
+                    return 0xD0;
+                case Keys.F1:
+                    return 0xBB;
+                case Keys.F2:
+                    return 0xBC;
+                case Keys.F3:
+                    return 0xBD;
+                case Keys.F4:
+                    return 0xBE;
+                case Keys.F5:
+                    return 0xBF;
+                case Keys.F6:
+                    return 0xC0;
+                case Keys.F7:
+                    return 0xC1;
+                case Keys.F8:
+                    return 0xC2;
+                case Keys.F9:
+                    return 0xC3;
+                case Keys.F10:
+                    return 0xC4;
+                case Keys.F11:
+                    return 0xD7;
+                case Keys.F12:
+                    return 0xD8;
+                case Keys.Escape:
+                    return 0x81;
+                case Keys.NumLock:
+                    return 0xC5;
+                case Keys.Numpad0: // Insert with Shift
+                    return 0xD2;
+                case Keys.Numpad1: // End with Shift
+                    return 0xCF;
+                case Keys.Numpad2: // Down Arrow with Shift
+                    return 0xD0;
+                case Keys.Numpad3: // Page Down with Shift
+                    return 0xD1;
+                case Keys.Numpad4: // Left Arrow with Shift
+                    return 0xCB;
+                case Keys.Numpad5:
+                    return 0xCC;
+                case Keys.Numpad6: // Right Arrow with Shift
+                    return 0xCD;
+                case Keys.Numpad7: // Home with Shift
+                    return 0xC7;
+                case Keys.Numpad8: // Up Arrow with Shift
+                    return 0xC8;
+                case Keys.Numpad9: // Page Up with Shift
+                    return 0xC9;
+                case Keys.Add:
+                    return 0xCE;
+                case Keys.Subtract:
+                    return 0xCA;
+                case Keys.Multiply: // Print Screen Up with Shift
+                    return 0xB7;
+                case Keys.Separator: // Delete with Shift
+                    return 0xD3;
             }
 
             return 0;
         }
 
-        //private static Key GetKey(char value)
-        //{
-        //    Key key = null;
-        //    switch (value)
-        //    {
-        //        case 'a':
-        //            key = new Key() { Dscription = "a", Value = 0x41, ScanCode = 0x9E };
-        //            break;
-        //        case 'b':
-        //            key = new Key() { Dscription = "b", Value = 0x42, ScanCode = 0xB0 };
-        //            break;
-        //        case 'c':
-        //            key = new Key() { Dscription = "c", Value = 0x43, ScanCode = 0xAE };
-        //            break;
-        //        case 'd':
-        //            key = new Key() { Dscription = "d", Value = 0x44, ScanCode = 0xA0 };
-        //            break;
-        //        case 'e':
-        //            key = new Key() { Dscription = "e", Value = 0x45, ScanCode = 0x92 };
-        //            break;
-        //        case 'f':
-        //            key = new Key() { Dscription = "f", Value = 0x46, ScanCode = 0xA1 };
-        //            break;
-        //        case 'g':
-        //            key = new Key() { Dscription = "g", Value = 0x47, ScanCode = 0xA2 };
-        //            break;
-        //        case 'h':
-        //            key = new Key() { Dscription = "h", Value = 0x48, ScanCode = 0xA3 };
-        //            break;
-        //        case 'i':
-        //            key = new Key() { Dscription = "i", Value = 0x49, ScanCode = 0x97 };
-        //            break;
-        //        case 'j':
-        //            key = new Key() { Dscription = "j", Value = 0x4A, ScanCode = 0xA4 };
-        //            break;
-        //        case 'k':
-        //            key = new Key() { Dscription = "k", Value = 0x4B, ScanCode = 0xA5 };
-        //            break;
-        //        case 'l':
-        //            key = new Key() { Dscription = "l", Value = 0x4C, ScanCode = 0xA6 };
-        //            break;
-        //        case 'm':
-        //            key = new Key() { Dscription = "m", Value = 0x4D, ScanCode = 0xB2 };
-        //            break;
-        //        case 'n':
-        //            key = new Key() { Dscription = "n", Value = 0x4E, ScanCode = 0xB1 };
-        //            break;
-        //        case 'o':
-        //            key = new Key() { Dscription = "o", Value = 0x4F, ScanCode = 0x98 };
-        //            break;
-        //        case 'p':
-        //            key = new Key() { Dscription = "p", Value = 0x50, ScanCode = 0x99 };
-        //            break;
-        //        case 'q':
-        //            key = new Key() { Dscription = "q", Value = 0x51, ScanCode = 0x90 };
-        //            break;
-        //        case 'r':
-        //            key = new Key() { Dscription = "r", Value = 0x52, ScanCode = 0x93 };
-        //            break;
-        //        case 's':
-        //            key = new Key() { Dscription = "s", Value = 0x53, ScanCode = 0x9F };
-        //            break;
-        //        case 't':
-        //            key = new Key() { Dscription = "t", Value = 0x54, ScanCode = 0x94 };
-        //            break;
-        //        case 'u':
-        //            key = new Key() { Dscription = "u", Value = 0x55, ScanCode = 0x96 };
-        //            break;
-        //        case 'v':
-        //            key = new Key() { Dscription = "v", Value = 0x56, ScanCode = 0xAF };
-        //            break;
-        //        case 'w':
-        //            key = new Key() { Dscription = "w", Value = 0x57, ScanCode = 0x91 };
-        //            break;
-        //        case 'x':
-        //            key = new Key() { Dscription = "x", Value = 0x58, ScanCode = 0xAD };
-        //            break;
-        //        case 'y':
-        //            key = new Key() { Dscription = "y", Value = 0x59, ScanCode = 0x95 };
-        //            break;
-        //        case 'z':
-        //            key = new Key() { Dscription = "z", Value = 0x5A, ScanCode = 0xAC };
-        //            break;
-
-
-        //        case '1':
-        //            key = new Key() { Dscription = "1", Value = 0x31, ScanCode = 0x82 };
-        //            break;
-        //        case '2':
-        //            key = new Key() { Dscription = "2", Value = 0x32, ScanCode = 0x83 };
-        //            break;
-        //        case '3':
-        //            key = new Key() { Dscription = "3", Value = 0x33, ScanCode = 0x84 };
-        //            break;
-        //        case '4':
-        //            key = new Key() { Dscription = "4", Value = 0x34, ScanCode = 0x85 };
-        //            break;
-        //        case '5':
-        //            key = new Key() { Dscription = "5", Value = 0x35, ScanCode = 0x86 };
-        //            break;
-        //        case '6':
-        //            key = new Key() { Dscription = "6", Value = 0x36, ScanCode = 0x87 };
-        //            break;
-        //        case '7':
-        //            key = new Key() { Dscription = "7", Value = 0x37, ScanCode = 0x88 };
-        //            break;
-        //        case '8':
-        //            key = new Key() { Dscription = "8", Value = 0x38, ScanCode = 0x89 };
-        //            break;
-        //        case '9':
-        //            key = new Key() { Dscription = "9", Value = 0x39, ScanCode = 0x8A };
-        //            break;
-        //        case '0':
-        //            key = new Key() { Dscription = "0", Value = 0x30, ScanCode = 0x8B };
-        //            break;
-
-        //        case '-':
-        //            key = new Key() { Dscription = "-", Value = 0xBD, ScanCode = 0x8C };
-        //            break;
-        //        case '=':
-        //            key = new Key() { Dscription = "=", Value = 0xBB, ScanCode = 0x8D };
-        //            break;
-        //        case '[':
-        //            key = new Key() { Dscription = "[", Value = 219, ScanCode = 0x9A };
-        //            break;
-        //        case ']':
-        //            key = new Key() { Dscription = "]", Value = 221, ScanCode = 0x9B };
-        //            break;
-        //        case ';':
-        //            key = new Key() { Dscription = ";", Value = 186, ScanCode = 0xA7 };
-        //            break;
-        //        case '\'':
-        //            key = new Key() { Dscription = "'", Value = 222, ScanCode = 0xA8 };
-        //            break;
-        //        case '`':
-        //            key = new Key() { Dscription = "`", Value = 192, ScanCode = 0xA9 };
-        //            break;
-        //        case '\\':
-        //            key = new Key() { Dscription = @"\", Value = 220, ScanCode = 0xAB };
-        //            break;
-        //        case ',':
-        //            key = new Key() { Dscription = ",", Value = 188, ScanCode = 0xB3 };
-        //            break;
-        //        case '.':
-        //            key = new Key() { Dscription = ".", Value = 190, ScanCode = 0xB4 };
-        //            break;
-        //        case '/':
-        //            key = new Key() { Dscription = "/", Value = 191, ScanCode = 0xB5 };
-        //            break;
-        //    }
-
-        //    return key;
-        //}
     }
 }
