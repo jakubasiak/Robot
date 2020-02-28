@@ -9,39 +9,38 @@ namespace Robot
 {
     public static class WinApi
     {
-        public const int INPUT_MOUSE = 0;
-        public const int INPUT_KEYBOARD = 1;
-        public const int INPUT_HARDWARE = 2;
         public const uint KEYEVENTF_EXTENDEDKEY = 0x0001;
         public const uint KEYEVENTF_KEYUP = 0x0002;
         public const uint KEYEVENTF_UNICODE = 0x0004;
         public const uint KEYEVENTF_SCANCODE = 0x0008;
         public const uint XBUTTON1 = 0x0001;
         public const uint XBUTTON2 = 0x0002;
-        public const uint MOUSEEVENTF_MOVE = 0x0001;
-        public const uint MOUSEEVENTF_LEFTDOWN = 0x0002;
-        public const uint MOUSEEVENTF_LEFTUP = 0x0004;
-        public const uint MOUSEEVENTF_RIGHTDOWN = 0x0008;
-        public const uint MOUSEEVENTF_RIGHTUP = 0x0010;
-        public const uint MOUSEEVENTF_MIDDLEDOWN = 0x0020;
-        public const uint MOUSEEVENTF_MIDDLEUP = 0x0040;
-        public const uint MOUSEEVENTF_XDOWN = 0x0080;
-        public const uint MOUSEEVENTF_XUP = 0x0100;
-        public const uint MOUSEEVENTF_WHEEL = 0x0800;
-        public const uint MOUSEEVENTF_VIRTUALDESK = 0x4000;
-        public const uint MOUSEEVENTF_ABSOLUTE = 0x8000;
 
-        [DllImport("user32.dll", SetLastError = true)]
-        public static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
+        public enum INPUT_TYPE : uint
+        {
+            INPUT_MOUSE = 0,
+            INPUT_KEYBOARD = 1,
+            INPUT_HARDWARE = 2
+        }
 
-        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
-        public static extern byte VkKeyScan(char ch);
-
-        [DllImport("user32.dll")]
-        public static extern uint MapVirtualKey(uint uCode, uint uMapType);
-
-        [DllImport("user32.dll")]
-        public static extern uint SendInput(uint nInputs, [MarshalAs(UnmanagedType.LPArray), In] INPUT[] pInputs, int cbSize);
+        [Flags]
+        internal enum MOUSEEVENTF : uint
+        {
+            ABSOLUTE = 0x8000,
+            HWHEEL = 0x01000,
+            MOVE = 0x0001,
+            MOVE_NOCOALESCE = 0x2000,
+            LEFTDOWN = 0x0002,
+            LEFTUP = 0x0004,
+            RIGHTDOWN = 0x0008,
+            RIGHTUP = 0x0010,
+            MIDDLEDOWN = 0x0020,
+            MIDDLEUP = 0x0040,
+            VIRTUALDESK = 0x4000,
+            WHEEL = 0x0800,
+            XDOWN = 0x0080,
+            XUP = 0x0100
+        }
 
         [StructLayout(LayoutKind.Sequential)]
         public struct MOUSEINPUT
@@ -84,6 +83,21 @@ namespace Robot
             [FieldOffset(4)] //*
             public HARDWAREINPUT hi;
         }
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
+
+        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+        public static extern byte VkKeyScan(char ch);
+
+        [DllImport("user32.dll")]
+        public static extern uint MapVirtualKey(uint uCode, uint uMapType);
+
+        [DllImport("user32.dll")]
+        public static extern uint SendInput(uint nInputs, [MarshalAs(UnmanagedType.LPArray), In] INPUT[] pInputs, int cbSize);
+
+        [DllImport("user32.dll")]
+        public static extern short GetAsyncKeyState(Int32 vKey);
 
     }
 }

@@ -4,16 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Robot
+namespace Robot.Keyboard
 {
     class Program
     {
         static void Main(string[] args)
         {
-            for (int c = 0; c <= 10; c++)
-            {
-                Keyboard.WriteText("${!@^Dziwne Znaki} & ĄżŹĆ");
-            }
+            //for (int c = 0; c <= 10; c++)
+            //{
+            //    Keyboard.WriteText("${!@^Dziwne Znaki} & ĄżŹĆ");
+            //}
+            var activityLogger = new ActivityLogger.ActivityLogger();
+            activityLogger.TrackActivities();
         }
     }
 }

@@ -6,20 +6,18 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Robot
+namespace Robot.Keyboard
 {
     public static class Keyboard
     {
         public static int Delay { get; set; } = 15;
-
-
 
         public static void KeyDown(Keys key)
         {
             Thread.Sleep(Delay);
 
             WinApi.INPUT[] inputs = new WinApi.INPUT[1];
-            inputs[0].type = WinApi.INPUT_KEYBOARD;
+            inputs[0].type = (int)WinApi.INPUT_TYPE.INPUT_KEYBOARD;
             inputs[0].ki.dwFlags = 0;
             inputs[0].ki.wVk = (byte) key;
             inputs[0].ki.wScan = GetScanCode(key);
@@ -35,7 +33,7 @@ namespace Robot
         {
             Thread.Sleep(Delay);
             WinApi.INPUT[] inputs = new WinApi.INPUT[1];
-            inputs[0].type = WinApi.INPUT_KEYBOARD;
+            inputs[0].type = (int) WinApi.INPUT_TYPE.INPUT_KEYBOARD;
             inputs[0].ki.wVk = (byte) key;
             inputs[0].ki.wScan = GetScanCode(key);
             inputs[0].ki.dwFlags = WinApi.KEYEVENTF_KEYUP;
@@ -157,6 +155,12 @@ namespace Robot
                 case 'n':
                     KeyDown(Keys.N);
                     KeyUp(Keys.N);
+                    break;
+                case 'ń':
+                    KeyDown(Keys.RightMenu);
+                    KeyDown(Keys.N);
+                    KeyUp(Keys.N);
+                    KeyUp(Keys.RightMenu);
                     break;
                 case 'o':
                     KeyDown(Keys.O);
