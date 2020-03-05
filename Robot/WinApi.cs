@@ -84,6 +84,19 @@ namespace Robot
             public HARDWAREINPUT hi;
         }
 
+        [StructLayout(LayoutKind.Sequential)]
+        public struct POINT
+        {
+            public int X;
+            public int Y;
+
+            public POINT(int x, int y)
+            {
+                this.X = x;
+                this.Y = y;
+            }
+        }
+
         [DllImport("user32.dll", SetLastError = true)]
         public static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
 
@@ -98,6 +111,9 @@ namespace Robot
 
         [DllImport("user32.dll")]
         public static extern short GetAsyncKeyState(Int32 vKey);
+
+        [DllImport("user32.dll")]
+        public static extern bool GetCursorPos(out POINT lpPoint);
 
     }
 }

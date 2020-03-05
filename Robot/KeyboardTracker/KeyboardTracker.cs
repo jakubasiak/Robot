@@ -38,7 +38,7 @@ namespace Robot.KeyboardTracker
                         alt = WinApi.GetAsyncKeyState(18) < 0;
                         var virtualKey = (Keys)i;
                         var c = this.GetReadableCharacter(virtualKey, shift, alt);
-                        Console.Write(c);
+                        Console.Write(i);
                     }
                 }
             }
