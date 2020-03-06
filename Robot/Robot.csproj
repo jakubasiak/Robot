@@ -48,6 +48,9 @@
     <Compile Include="Keyboard\Key.cs" />
     <Compile Include="Keyboard\Keyboard.cs" />
     <Compile Include="MouseTracker\MouseTracker.cs" />
+    <Compile Include="Mouse\EventType.cs" />
+    <Compile Include="Mouse\Mouse.cs" />
+    <Compile Include="Mouse\MouseButtons.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Keyboard\Keys.cs" />

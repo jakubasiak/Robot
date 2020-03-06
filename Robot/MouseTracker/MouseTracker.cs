@@ -26,7 +26,7 @@ namespace Robot.MouseTracker
                     previousPoint = point;
                 }
 
-                for (int i = 0; i < 0x04; i++)
+                for (int i = 0; i < 4; i++)
                 {
                     int key = WinApi.GetAsyncKeyState(i);
                     if (key == -32767)

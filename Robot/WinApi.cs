@@ -71,6 +71,22 @@ namespace Robot
             ushort wParamH;
         }
 
+        public enum MouseEventFlag : uint
+        {
+            Move = 0x0001,
+            LeftDown = 0x0002,
+            LeftUp = 0x0004,
+            RightDown = 0x0008,
+            RightUp = 0x0010,
+            MiddleDown = 0x0020,
+            MiddleUp = 0x0040,
+            XDown = 0x0080,
+            XUp = 0x0100,
+            Wheel = 0x0800,
+            VirtualDesk = 0x4000,
+            Absolute = 0x8000
+        }
+
         [StructLayout(LayoutKind.Explicit)]
         public struct INPUT
         {
@@ -114,6 +130,13 @@ namespace Robot
 
         [DllImport("user32.dll")]
         public static extern bool GetCursorPos(out POINT lpPoint);
+
+        [DllImport("user32.dll", EntryPoint = "SetCursorPos")]
+        public static extern int SetCursorPos(int x, int y);
+
+        [DllImport("user32.dll", EntryPoint = "mouse_event")]
+        public static extern void mouse_event(MouseEventFlag dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
+
 
     }
 }

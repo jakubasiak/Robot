@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Robot.Mouse;
 
 namespace Robot.Keyboard
 {
@@ -20,6 +21,15 @@ namespace Robot.Keyboard
 
             var mouseTracker = new MouseTracker.MouseTracker();
             mouseTracker.Track();
+
+            //Mouse.Mouse.SetPosition(new WinApi.POINT(250, 250));
+            //Mouse.Mouse.MouseEvent(MouseButtons.Left, EventType.Down);
+            //for (int i = 1; i < 500; i++)
+            //{
+            //    Mouse.Mouse.SetPosition(new WinApi.POINT(i, i));
+            //}
+            //Mouse.Mouse.SetPosition(new WinApi.POINT(501, 501));
+            //Mouse.Mouse.MouseEvent(MouseButtons.Left, EventType.Up);
         }
     }
 }
