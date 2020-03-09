@@ -61,10 +61,17 @@ namespace Robot.ActivityLogger
                         IsShift = keyboardState.IsShift,
                         IsCtrl = keyboardState.IsCtrl,
                         IsAlt = keyboardState.IsAlt,
+                        IsWin = keyboardState.IsWin,
                         EventTimeInTicks = keyboardState.EventTimeInTicks,
                         EventType = EventType.Keyboard
                     };
                     this.InputEvents.Add(keyboardEvent);
+
+                    if (keyboardEvent.Key == Keys.Escape)
+                    {
+                        this.StopTracking();
+                    }
+
                     Console.WriteLine(keyboardEvent.ToString());
                 }
             }
@@ -73,10 +80,10 @@ namespace Robot.ActivityLogger
         public void StopTracking()
         {
             this.IsTracking = false;
-            this.Save();
+            this.SaveEvents();
         }
 
-        private void Save()
+        private void SaveEvents()
         {
             JsonSerializer serializer = new JsonSerializer();
             using (StreamWriter sw = new StreamWriter(this.SavePath))

@@ -5,14 +5,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Threading;
+using Robot.ActivityLogger;
 
 namespace Robot.Mouse
 {
     public static class Mouse
     {
         public static int Delay { get; set; } = 15;
+
         public static void SetPosition(WinApi.POINT point)
         {
+            Thread.Sleep(Delay);
+            WinApi.SetCursorPos(point.X, point.Y);
+        }
+
+
+        public static void SetPosition(int mouseEventPositionX, int mouseEventPositionY)
+        {
+            var point = new WinApi.POINT(mouseEventPositionX, mouseEventPositionY);
             Thread.Sleep(Delay);
             WinApi.SetCursorPos(point.X, point.Y);
         }
@@ -49,6 +59,7 @@ namespace Robot.Mouse
                 for (int i = 0; i < count; i++)
                 {
                     WinApi.mouse_event(flagUp, 0, 0, 0, 0);
+                    Thread.Sleep(2);
                     WinApi.mouse_event(flagDown, 0, 0, 0, 0);
                 }
             }

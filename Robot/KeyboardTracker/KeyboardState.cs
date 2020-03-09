@@ -13,11 +13,12 @@ namespace Robot.KeyboardTracker
         public bool IsShift { get; set; }
         public bool IsAlt { get; set; }
         public bool IsCtrl { get; set; }
+        public bool IsWin { get; set; }
         public long EventTimeInTicks { get; set; }
 
         public override string ToString()
         {
-            return $"Key: {this.Key}, IsShift: {this.IsShift}, IsAlt: {this.IsAlt}, IsCtrl: {IsCtrl}, Time: {this.EventTimeInTicks}";
+            return $"Key: {this.Key}, IsShift: {this.IsShift}, IsAlt: {this.IsAlt}, IsCtrl: {this.IsCtrl}, IsWin: {this.IsWin} Time: {this.EventTimeInTicks}";
         }
     }
 }

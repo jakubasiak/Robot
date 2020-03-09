@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -12,6 +13,7 @@ namespace Robot.Keyboard
     {
         static void Main(string[] args)
         {
+
             //for (int c = 0; c <= 10; c++)
             //{
             //    Keyboard.WriteText("${!@^Dziwne Znaki} & ĄżŹĆ");
@@ -24,18 +26,19 @@ namespace Robot.Keyboard
             //mouseTracker.Track();
 
 
-            var activityLogger = new ActivityLogger.ActivityLogger(@"D:\Source\Private\Robot\log.json");
-            new Thread((() =>
-            {
-                activityLogger.Track();
-            })).Start();
+            //// LOG ACTIVIETIES
+            //var activityLogger = new ActivityLogger.ActivityLogger(@"D:\Source\Private\Robot\log.json");
+            //new Thread((() =>
+            //{
+            //    activityLogger.Track();
+            //})).Start();
 
 
-            var key = Console.ReadKey();
-            if (key.Key == ConsoleKey.Escape)
-            {
-                activityLogger.StopTracking();
-            }
+            // RUN ACTIVIETES
+            var activityRobot = new ActivityRobot.ActivityRobot();
+            activityRobot.LoadEvents(@"D:\Source\Private\Robot\log.json");
+            activityRobot.RunFromEvents();
+            Console.ReadKey();
 
             //Mouse.Mouse.SetPosition(new WinApi.POINT(250, 250));
             //Mouse.Mouse.MouseEvent(MouseButtons.Left, EventType.Down);

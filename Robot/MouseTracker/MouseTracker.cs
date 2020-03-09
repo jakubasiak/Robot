@@ -10,11 +10,13 @@ namespace Robot.MouseTracker
 {
     public class MouseTracker
     {
+        public bool IsTracking { get; set; }
+
         public void Track()
         {
-            var track = true;
+            this.IsTracking = true;
             var previousState = new MouseState();
-            while (track)
+            while (this.IsTracking)
             {
                 Thread.Sleep(2);
                 var mouseState = this.GetMouseState();
@@ -24,6 +26,11 @@ namespace Robot.MouseTracker
                     Console.WriteLine(mouseState.ToString());
                 }
             }
+        }
+
+        public void StropTracking()
+        {
+            this.IsTracking = false;
         }
 
         public MouseState GetMouseState()

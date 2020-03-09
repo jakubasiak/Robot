@@ -21,10 +21,12 @@ namespace Robot.KeyboardTracker
             '\n', (char) 0x08
         };
 
+        public bool IsTracking { get; set; }
+
         public void Track()
         {
-            var track = true;
-            while (track)
+            this.IsTracking = true;
+            while (this.IsTracking)
             {
                 Thread.Sleep(2);
                 var state = this.GetKeyboardState();
@@ -34,6 +36,11 @@ namespace Robot.KeyboardTracker
                 }
             }
 
+        }
+
+        public void StropTracking()
+        {
+            this.IsTracking = false;
         }
 
         public KeyboardState GetKeyboardState()
@@ -47,6 +54,7 @@ namespace Robot.KeyboardTracker
                     keyboardState.IsShift = WinApi.GetAsyncKeyState(16) < 0;
                     keyboardState.IsAlt = WinApi.GetAsyncKeyState(18) < 0;
                     keyboardState.IsCtrl = WinApi.GetAsyncKeyState(17) < 0;
+                    keyboardState.IsWin = WinApi.GetAsyncKeyState(91) < 0;
                     keyboardState.Key = (Keys)i;
                     keyboardState.EventTimeInTicks = DateTime.Now.Ticks;
                     return keyboardState;
@@ -61,7 +69,8 @@ namespace Robot.KeyboardTracker
             return previous.Key != current.Key ||
                    previous.IsShift != current.IsShift ||
                    previous.IsAlt != current.IsAlt ||
-                   previous.IsCtrl != current.IsCtrl;
+                   previous.IsCtrl != current.IsCtrl ||
+                   previous.IsWin != current.IsWin;
         }
 
         private char GetCharacter(Keys key, bool shift, bool alt)
