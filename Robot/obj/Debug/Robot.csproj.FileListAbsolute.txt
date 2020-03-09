@@ -12,3 +12,6 @@ C:\Users\kubak\source\repos\Robot\Robot\Robot\obj\Debug\Robot.csprojAssemblyRefe
 C:\Users\kubak\source\repos\Robot\Robot\Robot\obj\Debug\Robot.csproj.CoreCompileInputs.cache
 C:\Users\kubak\source\repos\Robot\Robot\Robot\obj\Debug\Robot.exe
 C:\Users\kubak\source\repos\Robot\Robot\Robot\obj\Debug\Robot.pdb
+D:\Source\Private\Robot\Robot\bin\Debug\Newtonsoft.Json.dll
+D:\Source\Private\Robot\Robot\bin\Debug\Newtonsoft.Json.xml
+D:\Source\Private\Robot\Robot\obj\Debug\Robot.csproj.CopyComplete

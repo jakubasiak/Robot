@@ -62,7 +62,7 @@ namespace Robot.MouseTracker
             return mouseState;
         }
 
-        private bool StateChanged(MouseState previous, MouseState current)
+        public bool StateChanged(MouseState previous, MouseState current)
         {
             return previous.PositionX != current.PositionX ||
                    previous.PositionY != current.PositionY ||
