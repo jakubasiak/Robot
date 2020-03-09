@@ -13,44 +13,62 @@ namespace Robot.MouseTracker
         public void Track()
         {
             var track = true;
-            WinApi.POINT previousPoint = new WinApi.POINT(0,0);
+            var previousState = new MouseState();
             while (track)
             {
                 Thread.Sleep(2);
-                WinApi.POINT point;
-                WinApi.GetCursorPos(out point);
-
-                if (previousPoint.X != point.X || previousPoint.Y != point.Y)
+                var mouseState = this.GetMouseState();
+                if (mouseState != null && this.StateChanged(previousState, mouseState))
                 {
-                    Console.WriteLine($"{point.X} - {point.Y}");
-                    previousPoint = point;
+                    previousState = mouseState;
+                    Console.WriteLine(mouseState.ToString());
                 }
+            }
+        }
 
-                for (int i = 0; i < 4; i++)
+        public MouseState GetMouseState()
+        {
+            var mouseState = new MouseState();
+
+            WinApi.GetCursorPos(out var point);
+            mouseState.PositionX = point.X;
+            mouseState.PositionY = point.Y;
+
+            for (int i = 0; i < 4; i++)
+            {
+                int key = WinApi.GetAsyncKeyState(i);
+                if (key == -32767)
                 {
-                    int key = WinApi.GetAsyncKeyState(i);
-                    if (key == -32767)
-                    {
-                        var lmb = WinApi.GetAsyncKeyState(1);
-                        var rmb = WinApi.GetAsyncKeyState(2);
-                        var mmb = WinApi.GetAsyncKeyState(4);
+                    var lmb = WinApi.GetAsyncKeyState(1);
+                    var rmb = WinApi.GetAsyncKeyState(2);
+                    var mmb = WinApi.GetAsyncKeyState(4);
 
-                        if (lmb < 0)
-                        {
-                            Console.WriteLine("Left Mouse Button");
-                        }
-                        if (rmb < 0)
-                        {
-                            Console.WriteLine("Right Mouse Button");
-                        }
-                        if (mmb < 0)
-                        {
-                            Console.WriteLine("Middle Mouse Button");
-                        }
+                    if (lmb < 0)
+                    {
+                        mouseState.LeftButtonDown = true;
+                    }
+                    if (rmb < 0)
+                    {
+                        mouseState.RightButtonDown = true;
+                    }
+                    if (mmb < 0)
+                    {
+                        mouseState.MiddleButtonDown = true;
                     }
                 }
-
             }
+
+            mouseState.EventTimeInTicks = DateTime.Now.Ticks;
+            return mouseState;
+        }
+
+        private bool StateChanged(MouseState previous, MouseState current)
+        {
+            return previous.PositionX != current.PositionX ||
+                   previous.PositionY != current.PositionY ||
+                   previous.LeftButtonDown != current.LeftButtonDown ||
+                   previous.MiddleButtonDown != current.MiddleButtonDown ||
+                   previous.RightButtonDown != current.RightButtonDown;
         }
     }
 }

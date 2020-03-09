@@ -24,27 +24,45 @@ namespace Robot.KeyboardTracker
         public void Track()
         {
             var track = true;
-            bool shift = false;
-            bool alt = false;
             while (track)
             {
                 Thread.Sleep(5);
-                for (int i = 0; i < 255; i++)
+                var state = this.GetKeyboardState();
+                if (state != null)
                 {
-                    int key = WinApi.GetAsyncKeyState(i);
-                    if (key == -32767)
-                    {
-                        shift = WinApi.GetAsyncKeyState(16) < 0;
-                        alt = WinApi.GetAsyncKeyState(18) < 0;
-                        var virtualKey = (Keys)i;
-                        var c = this.GetReadableCharacter(virtualKey, shift, alt);
-                        Console.Write(i);
-                    }
+                    Console.WriteLine(state.ToString());
                 }
             }
 
         }
 
+        public KeyboardState GetKeyboardState()
+        {
+            var keyboardState = new KeyboardState();
+            for (int i = 0; i < 255; i++)
+            {
+                int key = WinApi.GetAsyncKeyState(i);
+                if (key == -32767)
+                {
+                    keyboardState.IsShift = WinApi.GetAsyncKeyState(16) < 0;
+                    keyboardState.IsAlt = WinApi.GetAsyncKeyState(18) < 0;
+                    keyboardState.IsCtrl = WinApi.GetAsyncKeyState(17) < 0;
+                    keyboardState.Key = (Keys)i;
+                    keyboardState.EventTimeInTicks = DateTime.Now.Ticks;
+                    return keyboardState;
+                }
+            }
+
+            return null;
+        }
+
+        private bool StateChanged(KeyboardState previous, KeyboardState current)
+        {
+            return previous.Key != current.Key ||
+                   previous.IsShift != current.IsShift ||
+                   previous.IsAlt != current.IsAlt ||
+                   previous.IsCtrl != current.IsCtrl;
+        }
 
         private char GetCharacter(Keys key, bool shift, bool alt)
         {

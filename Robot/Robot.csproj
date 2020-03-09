@@ -44,9 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivityLogger\ActivityLogger.cs" />
+    <Compile Include="KeyboardTracker\KeyboardState.cs" />
     <Compile Include="KeyboardTracker\KeyboardTracker.cs" />
     <Compile Include="Keyboard\Key.cs" />
     <Compile Include="Keyboard\Keyboard.cs" />
+    <Compile Include="MouseTracker\MouseState.cs" />
     <Compile Include="MouseTracker\MouseTracker.cs" />
     <Compile Include="Mouse\EventType.cs" />
     <Compile Include="Mouse\Mouse.cs" />
