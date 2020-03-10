@@ -28,7 +28,7 @@ namespace Robot.KeyboardTracker
             this.IsTracking = true;
             while (this.IsTracking)
             {
-                Thread.Sleep(2);
+                Thread.Sleep(500);
                 var state = this.GetKeyboardState();
                 if (state != null)
                 {

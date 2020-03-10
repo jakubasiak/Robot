@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using Robot.ActivityLogger;
 using Robot.Keyboard;
 using Robot.Mouse;
+using Robot.MouseTracker;
 using EventType = Robot.ActivityLogger.EventType;
 
 namespace Robot.ActivityRobot
@@ -19,37 +20,29 @@ namespace Robot.ActivityRobot
         public void RunFromEvents()
         {
             long previousEventTimeInTicks = -1;
-            foreach (var inputEvent in this.InputEvents)
+
+            for (int i = 0; i < this.InputEvents.Count; i++)
             {
-                if (inputEvent.EventType == EventType.Mouse)
+                if (this.InputEvents[i].EventType == EventType.Mouse)
                 {
-                    var mouseEvent = (MouseEvent) inputEvent;
+                    var mouseEvent = (MouseEvent)this.InputEvents[i];
+                    var previousEvent = i > 0 ? this.GetMouseEvent(this.InputEvents[i - 1]) : null;
+                    var nextEvent = i < this.InputEvents.Count - 1 ? this.GetMouseEvent(this.InputEvents[i + 1]) : null;
                     if (previousEventTimeInTicks > 0)
                     {
                         Mouse.Mouse.Delay = TimeSpan.FromTicks(mouseEvent.EventTimeInTicks - previousEventTimeInTicks).Milliseconds;
                     }
 
                     Mouse.Mouse.SetPosition(mouseEvent.PositionX, mouseEvent.PositionY);
-                    if (mouseEvent.LeftButtonDown)
-                    {
-                        Mouse.Mouse.MouseEvent(MouseButtons.Left);
-                    }
-                    if (mouseEvent.MiddleButtonDown)
-                    {
-                        Mouse.Mouse.MouseEvent(MouseButtons.Left);
-                    }
-                    if (mouseEvent.RightButtonDown)
-                    {
-                        Mouse.Mouse.MouseEvent(MouseButtons.Left);
-                    }
+                    this.PerformMouseEvent(previousEvent, mouseEvent, nextEvent);
 
                     previousEventTimeInTicks = mouseEvent.EventTimeInTicks;
 
                     Console.WriteLine(mouseEvent.ToString());
                 }
-                if (inputEvent.EventType == EventType.Keyboard)
+                if (this.InputEvents[i].EventType == EventType.Keyboard)
                 {
-                    var keyboardEvent = (KeyboardEvent)inputEvent;
+                    var keyboardEvent = (KeyboardEvent)this.InputEvents[i];
                     if (previousEventTimeInTicks > 0)
                     {
                         Keyboard.Keyboard.Delay = TimeSpan.FromTicks(keyboardEvent.EventTimeInTicks - previousEventTimeInTicks).Milliseconds;
@@ -104,6 +97,107 @@ namespace Robot.ActivityRobot
                     Console.WriteLine(keyboardEvent.ToString());
                 }
             }
+        }
+
+        private MouseEvent GetMouseEvent(InputEvent inputEvent)
+        {
+            if (inputEvent.EventType != EventType.Mouse)
+            {
+                return null;
+            }
+            else
+            {
+                return (MouseEvent) inputEvent;
+            }
+        }
+
+        private void PerformMouseEvent(MouseEvent previous, MouseEvent current, MouseEvent next)
+        {
+
+            if (current.LeftButtonDown)
+            {
+                if (previous == null && next == null)
+                {
+                    Mouse.Mouse.MouseEvent(MouseButtons.Left);
+                }
+
+                if (previous == null && next != null && next.LeftButtonDown)
+                {
+                    Mouse.Mouse.MouseEvent(MouseButtons.Left, Mouse.EventType.Down);
+                }
+
+                if (previous != null && previous.LeftButtonDown && next != null && next.LeftButtonDown)
+                {
+                    Mouse.Mouse.MouseEvent(MouseButtons.Left, Mouse.EventType.Down);
+                }
+
+                if (previous != null && previous.LeftButtonDown && next == null)
+                {
+                    Mouse.Mouse.MouseEvent(MouseButtons.Left, Mouse.EventType.Down);
+                    Mouse.Mouse.MouseEvent(MouseButtons.Left, Mouse.EventType.Up);
+                }
+            }
+            else
+            {
+                Mouse.Mouse.MouseEvent(MouseButtons.Left, Mouse.EventType.Up);
+            }
+
+            if (current.MiddleButtonDown)
+            {
+                if (previous == null && next == null)
+                {
+                    Mouse.Mouse.MouseEvent(MouseButtons.Middle);
+                }
+
+                if (previous == null && next != null && next.MiddleButtonDown)
+                {
+                    Mouse.Mouse.MouseEvent(MouseButtons.Middle, Mouse.EventType.Down);
+                }
+
+                if (previous != null && previous.MiddleButtonDown && next != null && next.MiddleButtonDown)
+                {
+                    Mouse.Mouse.MouseEvent(MouseButtons.Middle, Mouse.EventType.Down);
+                }
+
+                if (previous != null && previous.MiddleButtonDown && next == null)
+                {
+                    Mouse.Mouse.MouseEvent(MouseButtons.Middle, Mouse.EventType.Down);
+                    Mouse.Mouse.MouseEvent(MouseButtons.Middle, Mouse.EventType.Up);
+                }
+            }
+            else
+            {
+                Mouse.Mouse.MouseEvent(MouseButtons.Middle, Mouse.EventType.Up);
+            }
+
+            if (current.RightButtonDown)
+            {
+                if (previous == null && next == null)
+                {
+                    Mouse.Mouse.MouseEvent(MouseButtons.Right);
+                }
+
+                if (previous == null && next != null && next.RightButtonDown)
+                {
+                    Mouse.Mouse.MouseEvent(MouseButtons.Right, Mouse.EventType.Down);
+                }
+
+                if (previous != null && previous.RightButtonDown && next != null && next.RightButtonDown)
+                {
+                    Mouse.Mouse.MouseEvent(MouseButtons.Right, Mouse.EventType.Down);
+                }
+
+                if (previous != null && previous.RightButtonDown && next == null)
+                {
+                    Mouse.Mouse.MouseEvent(MouseButtons.Right, Mouse.EventType.Down);
+                    Mouse.Mouse.MouseEvent(MouseButtons.Right, Mouse.EventType.Up);
+                }
+            }
+            else
+            {
+                Mouse.Mouse.MouseEvent(MouseButtons.Right, Mouse.EventType.Up);
+            }
+
         }
 
         public void LoadEvents(string loadingPath)

@@ -41,29 +41,23 @@ namespace Robot.MouseTracker
             mouseState.PositionX = point.X;
             mouseState.PositionY = point.Y;
 
-            for (int i = 0; i < 4; i++)
-            {
-                int key = WinApi.GetAsyncKeyState(i);
-                if (key == -32767)
-                {
-                    var lmb = WinApi.GetAsyncKeyState(1);
-                    var rmb = WinApi.GetAsyncKeyState(2);
-                    var mmb = WinApi.GetAsyncKeyState(4);
+            var lmb = WinApi.GetAsyncKeyState(1);
+            var rmb = WinApi.GetAsyncKeyState(2);
+            var mmb = WinApi.GetAsyncKeyState(4);
 
-                    if (lmb < 0)
-                    {
-                        mouseState.LeftButtonDown = true;
-                    }
-                    if (rmb < 0)
-                    {
-                        mouseState.RightButtonDown = true;
-                    }
-                    if (mmb < 0)
-                    {
-                        mouseState.MiddleButtonDown = true;
-                    }
-                }
+            if (lmb < 0)
+            {
+                mouseState.LeftButtonDown = true;
             }
+            if (rmb < 0)
+            {
+                mouseState.RightButtonDown = true;
+            }
+            if (mmb < 0)
+            {
+                mouseState.MiddleButtonDown = true;
+            }
+
 
             mouseState.EventTimeInTicks = DateTime.Now.Ticks;
             return mouseState;
@@ -72,10 +66,7 @@ namespace Robot.MouseTracker
         public bool StateChanged(MouseState previous, MouseState current)
         {
             return previous.PositionX != current.PositionX ||
-                   previous.PositionY != current.PositionY ||
-                   previous.LeftButtonDown != current.LeftButtonDown ||
-                   previous.MiddleButtonDown != current.MiddleButtonDown ||
-                   previous.RightButtonDown != current.RightButtonDown;
+                   previous.PositionY != current.PositionY;
         }
     }
 }

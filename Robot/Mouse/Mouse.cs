@@ -58,9 +58,8 @@ namespace Robot.Mouse
                 int count = doubleClick == false ? 1 : 2;//check
                 for (int i = 0; i < count; i++)
                 {
-                    WinApi.mouse_event(flagUp, 0, 0, 0, 0);
-                    Thread.Sleep(2);
                     WinApi.mouse_event(flagDown, 0, 0, 0, 0);
+                    WinApi.mouse_event(flagUp, 0, 0, 0, 0);
                 }
             }
             else

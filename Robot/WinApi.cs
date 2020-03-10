@@ -146,6 +146,9 @@ namespace Robot
         [DllImport("user32.dll")]
         public static extern short GetAsyncKeyState(Int32 vKey);
 
+        [DllImport("USER32.dll")]
+        public static extern short GetKeyState(Int32 nVirtKey);
+
         [DllImport("user32.dll")]
         public static extern bool GetCursorPos(out POINT lpPoint);
 
