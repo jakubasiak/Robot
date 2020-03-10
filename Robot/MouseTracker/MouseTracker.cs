@@ -22,6 +22,10 @@ namespace Robot.MouseTracker
                 var mouseState = this.GetMouseState();
                 if (mouseState != null && this.StateChanged(previousState, mouseState))
                 {
+                    IntPtr hWnd = WinApi.WindowFromPoint(new WinApi.POINT(mouseState.PositionX, mouseState.PositionY));
+                    if (hWnd != IntPtr.Zero) WinApi.SetWindowText(hWnd, "Window Found");
+
+
                     previousState = mouseState;
                     Console.WriteLine(mouseState.ToString());
                 }

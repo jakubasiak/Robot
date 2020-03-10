@@ -22,8 +22,8 @@ namespace Robot.Keyboard
             //var keyboardTracker = new KeyboardTracker.KeyboardTracker();
             //keyboardTracker.Track();
 
-            //var mouseTracker = new MouseTracker.MouseTracker();
-            //mouseTracker.Track();
+            var mouseTracker = new MouseTracker.MouseTracker();
+            mouseTracker.Track();
 
 
             //// LOG ACTIVIETIES
@@ -34,11 +34,11 @@ namespace Robot.Keyboard
             //})).Start();
 
 
-            // RUN ACTIVIETES
-            var activityRobot = new ActivityRobot.ActivityRobot();
-            activityRobot.LoadEvents(@"D:\Source\Private\Robot\log.json");
-            activityRobot.RunFromEvents();
-            Console.ReadKey();
+            //// RUN ACTIVIETES
+            //var activityRobot = new ActivityRobot.ActivityRobot();
+            //activityRobot.LoadEvents(@"D:\Source\Private\Robot\log.json");
+            //activityRobot.RunFromEvents();
+            //Console.ReadKey();
 
             //Mouse.Mouse.SetPosition(new WinApi.POINT(250, 250));
             //Mouse.Mouse.MouseEvent(MouseButtons.Left, EventType.Down);

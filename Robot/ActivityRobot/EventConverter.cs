@@ -30,17 +30,6 @@ namespace Robot.ActivityRobot
 
             return null;
 
-
-            //if (objectType.IsInstanceOfType(typeof(MouseEvent)))
-            //{
-            //    return (MouseEvent) existingValue;
-            //}
-            //if (objectType.IsInstanceOfType(typeof(KeyboardEvent)))
-            //{
-            //    return (KeyboardEvent) existingValue;
-            //}
-
-            //return null;
         }
 
         public override bool CanConvert(Type objectType)

@@ -158,6 +158,12 @@ namespace Robot
         [DllImport("user32.dll", EntryPoint = "mouse_event")]
         public static extern void mouse_event(MouseEventFlag dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
 
+        [DllImport("user32.dll")]
+        public static extern IntPtr WindowFromPoint(POINT p);
+
+        [DllImport("user32.dll")]
+        public static extern bool SetWindowText(IntPtr hWnd, string lpString);
+
 
     }
 }

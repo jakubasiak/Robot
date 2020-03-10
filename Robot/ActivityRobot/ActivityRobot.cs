@@ -193,10 +193,10 @@ namespace Robot.ActivityRobot
                     Mouse.Mouse.MouseEvent(MouseButtons.Right, Mouse.EventType.Up);
                 }
             }
-            else
-            {
-                Mouse.Mouse.MouseEvent(MouseButtons.Right, Mouse.EventType.Up);
-            }
+            //else
+            //{
+            //    Mouse.Mouse.MouseEvent(MouseButtons.Right, Mouse.EventType.Up);
+            //}
 
         }
 
