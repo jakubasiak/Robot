@@ -131,16 +131,16 @@ namespace Robot.ActivityRobot
                     Mouse.Mouse.MouseEvent(MouseButtons.Left, Mouse.EventType.Down);
                 }
 
-                if (previous != null && previous.LeftButtonDown && next == null)
+                if (previous != null && previous.LeftButtonDown && (next == null || !next.LeftButtonDown))
                 {
                     Mouse.Mouse.MouseEvent(MouseButtons.Left, Mouse.EventType.Down);
                     Mouse.Mouse.MouseEvent(MouseButtons.Left, Mouse.EventType.Up);
                 }
             }
-            else
-            {
-                Mouse.Mouse.MouseEvent(MouseButtons.Left, Mouse.EventType.Up);
-            }
+            //else
+            //{
+            //    Mouse.Mouse.MouseEvent(MouseButtons.Left, Mouse.EventType.Up);
+            //}
 
             if (current.MiddleButtonDown)
             {
@@ -159,16 +159,16 @@ namespace Robot.ActivityRobot
                     Mouse.Mouse.MouseEvent(MouseButtons.Middle, Mouse.EventType.Down);
                 }
 
-                if (previous != null && previous.MiddleButtonDown && next == null)
+                if (previous != null && previous.MiddleButtonDown && (next == null || !next.MiddleButtonDown))
                 {
                     Mouse.Mouse.MouseEvent(MouseButtons.Middle, Mouse.EventType.Down);
                     Mouse.Mouse.MouseEvent(MouseButtons.Middle, Mouse.EventType.Up);
                 }
             }
-            else
-            {
-                Mouse.Mouse.MouseEvent(MouseButtons.Middle, Mouse.EventType.Up);
-            }
+            //else
+            //{
+            //    Mouse.Mouse.MouseEvent(MouseButtons.Middle, Mouse.EventType.Up);
+            //}
 
             if (current.RightButtonDown)
             {
@@ -187,12 +187,12 @@ namespace Robot.ActivityRobot
                     Mouse.Mouse.MouseEvent(MouseButtons.Right, Mouse.EventType.Down);
                 }
 
-                if (previous != null && previous.RightButtonDown && next == null)
+                if (previous != null && previous.RightButtonDown && (next == null || !next.RightButtonDown))
                 {
                     Mouse.Mouse.MouseEvent(MouseButtons.Right, Mouse.EventType.Down);
                     Mouse.Mouse.MouseEvent(MouseButtons.Right, Mouse.EventType.Up);
                 }
-            }
+            } 
             //else
             //{
             //    Mouse.Mouse.MouseEvent(MouseButtons.Right, Mouse.EventType.Up);

@@ -15,7 +15,6 @@ namespace Robot.Keyboard
         public static void KeyDown(Keys key)
         {
             Thread.Sleep(Delay);
-
             WinApi.INPUT[] inputs = new WinApi.INPUT[1];
             inputs[0].type = (int)WinApi.INPUT_TYPE.INPUT_KEYBOARD;
             inputs[0].ki.dwFlags = 0;

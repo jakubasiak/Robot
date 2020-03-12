@@ -19,9 +19,12 @@ namespace Robot.Keyboard
             //    Keyboard.WriteText("${!@^Dziwne Znaki} & ĄżŹĆ");
             //}
 
+
+            //// KEYBOARD TRACKER
             //var keyboardTracker = new KeyboardTracker.KeyboardTracker();
             //keyboardTracker.Track();
 
+            // MOUSE TRACKER
             var mouseTracker = new MouseTracker.MouseTracker();
             mouseTracker.Track();
 

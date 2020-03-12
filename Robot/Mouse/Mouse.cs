@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Threading;
+using WindowsInput;
 using Robot.ActivityLogger;
 
 namespace Robot.Mouse
@@ -12,6 +13,7 @@ namespace Robot.Mouse
     public static class Mouse
     {
         public static int Delay { get; set; } = 15;
+        public static InputSimulator InputSimulator { get; set; } = new InputSimulator();
 
         public static void SetPosition(WinApi.POINT point)
         {
@@ -27,49 +29,56 @@ namespace Robot.Mouse
             WinApi.SetCursorPos(point.X, point.Y);
         }
 
-        public static void MouseEvent(MouseButtons button, EventType type = EventType.Click, bool doubleClick = false)
-        {
-
-            WinApi.MouseEventFlag flagUp = new WinApi.MouseEventFlag();
-            WinApi.MouseEventFlag flagDown = new WinApi.MouseEventFlag();
-
-            switch (button)
-            {
-                case MouseButtons.Left:
-                    flagUp = WinApi.MouseEventFlag.LeftUp;
-                    flagDown = WinApi.MouseEventFlag.LeftDown;
-                    break;
-                case MouseButtons.Middle:
-                    flagUp = WinApi.MouseEventFlag.MiddleUp;
-                    flagDown = WinApi.MouseEventFlag.MiddleDown;
-                    break;
-                case MouseButtons.Right:
-                    flagUp = WinApi.MouseEventFlag.RightUp;
-                    flagDown = WinApi.MouseEventFlag.RightDown;
-                    break;
-                default://defaul left button
-                    flagUp = WinApi.MouseEventFlag.LeftUp;
-                    flagDown = WinApi.MouseEventFlag.LeftDown;
-                    break;
-            }
+        public static void MouseEvent(MouseButtons button, EventType type = EventType.Click)
+        { 
 
             if (type == EventType.Click)
             {
-                int count = doubleClick == false ? 1 : 2;//check
-                for (int i = 0; i < count; i++)
+                switch (button)
                 {
-                    WinApi.mouse_event(flagDown, 0, 0, 0, 0);
-                    WinApi.mouse_event(flagUp, 0, 0, 0, 0);
+                    case MouseButtons.Left:
+                        InputSimulator.Mouse.LeftButtonClick();
+                        break;
+                    case MouseButtons.Middle:
+                        InputSimulator.Mouse.MiddleButtonClick();
+                        break;
+                    case MouseButtons.Right:
+                        InputSimulator.Mouse.RightButtonClick();
+                        break;
+                }
+
+            }
+            if (type == EventType.Down)
+            {
+                switch (button)
+                {
+                    case MouseButtons.Left:
+                        InputSimulator.Mouse.LeftButtonDown();
+                        break;
+                    case MouseButtons.Middle:
+                        InputSimulator.Mouse.MiddleButtonDown();
+                        break;
+                    case MouseButtons.Right:
+                        InputSimulator.Mouse.RightButtonDown();
+                        break;
                 }
             }
-            else
+            if (type == EventType.Up)
             {
-                if (type == EventType.Down)
-                    WinApi.mouse_event(flagDown, 0, 0, 0, 0);
-                else if (type == EventType.Up)
-                    WinApi.mouse_event(flagUp, 0, 0, 0, 0);
+                switch (button)
+                {
+                    case MouseButtons.Left:
+                        InputSimulator.Mouse.LeftButtonUp();
+                        break;
+                    case MouseButtons.Middle:
+                        InputSimulator.Mouse.MiddleButtonUp();
+                        break;
+                    case MouseButtons.Right:
+                        InputSimulator.Mouse.RightButtonUp();
+                        break;
+                }
             }
         }
     }
-
 }
+
